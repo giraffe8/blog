@@ -1,25 +1,43 @@
-<!DOCTYPE html>
-<html lang="zh">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>基于HTML5 canvas的逼真烟花特效插件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>时钟</title>
+
+    <link href="static/css/clock.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="static/js/clock.js"></script>
+
 </head>
+
 <body>
-<div class="jq22">
-
+<div class="time-wrap zoomIn animated">
+    <div class="time-base bounceInUp animated"></div>
+    <div class="time-belt bounceInUp animated"></div>
+    <div class="time-wheel bounceInLeft animated"></div>
+    <div class="time-clock bounceInUp animated">
+        <div class="indicators">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="letters">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="arrows">
+            <div class="hour"></div>
+            <div class="minute"></div>
+            <div class="second"></div>
+        </div>
+    </div>
 </div>
-
-<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="js/jquery.fireworks.js"></script>
-<script type="text/javascript">
-    $('.jq22').fireworks({
-        sound: false, // sound effect
-        opacity: 0.9,
-        width: '100%',
-        height: '100%'
-    });
-</script>
 </body>
 </html>
