@@ -117,9 +117,15 @@
 			    for(var i = 0; i < formData.length; i++) {
                     params = params  + formData[i].name + '=' + encodeURI(formData[i].value) + '&';
 				}
-				$('.generatorLink').show();
-                $('.generatorResult').attr('href', window.location.origin + "/html/love.html?" + params);
-                $('.generatorResult').text(window.location.origin + "/html/love.html?" + params);
+			    var lovePath = '/html/love.html';
+                var repositoryName = window.location.pathname.substring(0, window.location.pathname.substring(1).indexOf('/') + 1);
+                var loveFirstName = lovePath.substring(0, lovePath.substring(1).indexOf('/') + 1);
+                if(repositoryName == loveFirstName) {
+                    repositoryName = '';
+				}
+                $('.generatorResult').attr('href', window.location.origin + repositoryName + lovePath + "?" + params);
+                $('.generatorResult').text(window.location.origin + repositoryName + lovePath + "?" + params);
+                $('.generatorLink').show();
             });
 		});
 	</script>
