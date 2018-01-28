@@ -38,9 +38,12 @@
     <div id="content">
         <div id="code">
             <span class="comments">/**</span><br />
-            <span class="space"/><span class="comments">* <span class="meetDate"></span>,这一天我看见你</span><br />
-            <span class="space"/><span class="comments">* <span class="today"></span>.我为你做了这个</span><br />
-            <span class="space"/><span class="comments">*/</span><br />
+            <span class="space"/>
+            <span class="comments">* <span class="meetDate"></span>,</span><br />
+            <span class="space"/>
+            <span class="comments">* <span class="today"></span>.</span><br />
+            <span class="space"/>
+            <span class="comments">*/</span><br />
             Boy name = <span class="keyword">Mr</span> <span class="boyName"></span><br />
             Girl name = <span class="keyword">Mrs</span> <span class="girlName"></span><br />
             <span class="comments">// Fall in love river. </span><br />
@@ -94,7 +97,7 @@
     var girlName = getQueryStringFn("girlName");
     var meetDate = getQueryStringFn("meetDate");
     var word = getQueryStringFn("word") != '' ? getQueryStringFn("word") : '爱你直到永永远远。';
-    var signatureName = getQueryStringFn("signatureName");
+    var signatureName = getQueryStringFn("signatureName") != '' ? getQueryStringFn("signatureName") : getQueryStringFn("boyName");
     var meetDateArr = meetDate.split("-");
     $('.boyName').text(boyName);
     $('.girlName').text(girlName);
