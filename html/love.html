@@ -1,10 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>我爱你</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/love.ico">
+    <title>我爱你</title>
 
     <style type="text/css">
         @font-face {
@@ -18,6 +21,15 @@
     <script type="text/javascript" src="../static/js/garden.js"></script>
     <script type="text/javascript" src="../static/js/functions.js"></script>
 
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../static/plugins/bootstrap/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../static/plugins/bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.min.js"></script>
+    <script src="../static/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -26,11 +38,11 @@
     <div id="content">
         <div id="code">
             <span class="comments">/**</span><br />
-            <span class="space"/><span class="comments">* 2017—02-16,这一天我看见你</span><br />
-            <span class="space"/><span class="comments">* 2018-02-14.我为你做了这个</span><br />
+            <span class="space"/><span class="comments">* <span class="meetDate"></span>,这一天我看见你</span><br />
+            <span class="space"/><span class="comments">* <span class="today"></span>.我为你做了这个</span><br />
             <span class="space"/><span class="comments">*/</span><br />
-            Boy name = <span class="keyword">Mr</span> 黄黄黄<br />
-            Girl name = <span class="keyword">Mrs</span> 惠妹<br />
+            Boy name = <span class="keyword">Mr</span> <span class="boyName"></span><br />
+            Girl name = <span class="keyword">Mrs</span> <span class="girlName"></span><br />
             <span class="comments">// Fall in love river. </span><br />
             The boy love the girl;<br />
             <span class="comments">// They love each other.</span><br />
@@ -60,8 +72,8 @@
                     <div id="elapseClock"></div>
                 </div>
                 <div id="loveu">
-                    爱你直到永永远远。<br/>
-                    <div class="signature">- 黄黄黄</div>
+                    <span class="word"></span><br/>
+                    <div class="signature">- <span class="signatureName"></span></div>
                 </div>
             </div>
         </div>
@@ -69,10 +81,33 @@
 </div>
 
 <script type="text/javascript">
+    //获取地址参数值
+    function getQueryStringFn(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return decodeURI(r[2]); return null;
+    }
+</script>
+<script type="text/javascript">
+    // 赋值
+    var boyName = getQueryStringFn("boyName");
+    var girlName = getQueryStringFn("girlName");
+    var meetDate = getQueryStringFn("meetDate");
+    var word = getQueryStringFn("word") != '' ? getQueryStringFn("word") : '爱你直到永永远远。';
+    var signatureName = getQueryStringFn("signatureName");
+    var meetDateArr = meetDate.split("-");
+    $('.boyName').text(boyName);
+    $('.girlName').text(girlName);
+    var today = new Date();
+    $('.meetDate').text(meetDate);
+    $('.today').text(today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate());
+    $('.word').text(word);
+    $('.signatureName').text(signatureName);
+
     var offsetX = $("#loveHeart").width() / 2;
     var offsetY = $("#loveHeart").height() / 2 - 55;
     var together = new Date();
-    together.setFullYear(2017, 1, 16);
+    together.setFullYear(meetDateArr[0], meetDateArr[1] - 1, meetDateArr[2]);
     together.setHours(20);
     together.setMinutes(0);
     together.setSeconds(0);
@@ -90,12 +125,12 @@
     } else {
         setTimeout(function () {
             startHeartAnimation();
-        }, 5000);
+        }, 2000);
 
         timeElapse(together);
         setInterval(function () {
             timeElapse(together);
-        }, 500);
+        }, 200);
 
         adjustCodePosition();
         $("#code").typewriter();

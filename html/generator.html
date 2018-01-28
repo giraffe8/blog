@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="../static/images/love.ico">
+	<title>表白链接生成器</title>
+
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="../static/plugins/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<script type="text/javascript" src="../static/js/jquery-1.11.0.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../static/plugins/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- 时间控件 -->
+	<link href="../static/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+	<script type="text/javascript" src="../static/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../static/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+
+	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	<!--[if lt IE 9]><script src="../static/plugins/bootstrap/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<script src="../static/plugins/bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="../static/js/html5shiv.min.js"></script>
+	<script src="../static/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container">
+
+		<div class="box box-info">
+			<div class="box-header with-border">
+				<h3 class="box-title">表白链接生成器</h3>
+			</div>
+			<!-- /.box-header -->
+			<!-- form start -->
+			<form class="form-horizontal">
+				<div class="box-body">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">（男）姓名</label>
+
+						<div class="col-sm-10">
+							<input type="text" name="boyName" class="form-control" placeholder="（男）姓名">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">（女）姓名</label>
+
+						<div class="col-sm-10">
+							<input type="text" name="girlName" class="form-control" placeholder="（女）姓名">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="dtp_input2" class="col-sm-2 control-label">认识对方日期</label>
+						<div class="input-group date form_date col-sm-10" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+							<input class="form-control" size="16" type="text" value="" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+						<input type="hidden" name="meetDate" id="dtp_input2" value="" /><br/>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">说句甜蜜话</label>
+
+						<div class="col-sm-10">
+							<input type="text" name="word" class="form-control" placeholder="默认：爱你直到永永远远。">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">签名</label>
+
+						<div class="col-sm-10">
+							<input type="text" name="signatureName" class="form-control" placeholder="签名">
+						</div>
+					</div>
+				</div>
+				<!-- /.box-body -->
+				<div class="box-footer col-sm-offset-2" style="margin-bottom: 15px;">
+					<button type="button" class="btn btn-info generator">生成链接</button>
+				</div>
+				<!-- /.box-footer -->
+				<div class="box-body">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">生成结果</label>
+
+						<div class="col-sm-10 generatorLink" style="display: none;">
+							<a href="" class="generatorResult" target="_blank"></a> （复制此链接打开）
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div> <!-- /container -->
+
+	<script type="text/javascript">
+		$(function(){
+            $('.form_date').datetimepicker({
+                language:  'zh-CN',
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+
+			$('.generator').click(function () {
+			    var params = '';
+			    var formData = $('form').serializeArray();
+			    for(var i = 0; i < formData.length; i++) {
+                    params = params  + formData[i].name + '=' + encodeURI(formData[i].value) + '&';
+				}
+				$('.generatorLink').show();
+                $('.generatorResult').attr('href', window.location.origin + "/html/love.html?" + params);
+                $('.generatorResult').text(window.location.origin + "/html/love.html?" + params);
+            });
+		});
+	</script>
+</body>
+</html>
